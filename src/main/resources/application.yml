@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: good-reads-app
+  security:
+    oauth2:
+      client:
+        registration:
+#          facebook:
+#            client-id: <Client ID>
+#            client-secret: <Secret>
+#            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}" # Note that facebook now mandates the use of https redirect URIs, so make sure your app supports https in production
+#            scope:
+#                - email
+#                - public_profile
+          github:
+            client-id: ENC(0xe0GPeC/9URQ9m1XEEKe66DHt0cuExkHYB/VGTHM5s=)
+            client-secret: ENC(Auz0ZT/xxu6vHwPHWeLVzujuriREL/o4VriarO1oILbps6s1+OdTGumYmSFdlaNcbQjO011MTGc=)
+  data:
+        cassandra:
+            keyspace-name: goodreadskeyspace
+            username: ENC(EueFMGPDQBUNzu6PpzmkNwljjc0wPfh5W6aFy+/zQyACwBSnYvG1JQ==)
+            password: ENC(a3NGf1/boi8EACH2wVb1km5RIpy27mca01wDCDYbupRojvK1NLiJ8Bo9fGNCbU4+rT7FCTh2WDx4vv0xW/2rOw1TiIyS/p7XRlYSHDj855Z/+KFrxckW2UDDBidQEkTLYXj3scMzxRV+1LUi7jwfYc+PrlY7izDJOVOSt6NIdkMqJ8zAajbSWIoiWkFIu30n)
+            schema-action: create-if-not-exists
+            request:
+                timeout: 10s
+            connection:
+                connect-timeout: 10s
+                init-query-timeout: 10s
+
+datastax.astra:
+    secure-connect-bundle: secure-connect-kakiadb.zip
+
+astra.db:
+    id: 64326450-4165-4b27-840d-2bbd29de32f4-1
+    region: us-east4
+    keyspace: goodreadskeyspace
+    application.token: AstraCS:bOZhrpEqJYZWxaCQSytnSILu:fc3a8675a5b4fecda7d2d9faf3a4b9185c3e5421a7aa7f6387a3e8be60510281
+
+logging.level.org.springframework.data.cassandra.core.cql.CqlTemplate: DEBUG
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    key-obtention-iterations: 1000
+    pool-size: 1
+    salt-generator-classname: org.jasypt.salt.RandomSaltGenerator
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    string-output-type: base64

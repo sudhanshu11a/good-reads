@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+</head>
+<body>
+
+<div style="margin:20px" th:fragment="search-panel">
+    <div>
+
+        <div sec:authorize="isAuthenticated()">
+            <a href="/user/books">
+                Welcome <span sec:authentication="name"></span>
+            </a>
+        </div>
+
+        <div th:if="${not #authorization.expression('isAuthenticated()')}">
+            Login With GitHub -> <a href="/oauth2/authorization/github">click here</a>
+        </div>
+
+
+    </div>
+    <form action="#" th:attr="action=@{/search/book}">
+        <div class="input-group mb-3">
+            <input name="title" type="text" class="form-control"
+                   placeholder="Search" aria-label="title search"
+                   aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit"
+                    id="search_id">Search
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

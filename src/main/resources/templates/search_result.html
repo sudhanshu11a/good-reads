@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Result</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div th:insert="components/search :: search-panel"></div>
+
+
+	<div class="card-group">
+		<div class="card" style="width: 18rem; flex: 0 0 21%; margin:20px;" th:each="book: ${searchResult}">
+			<img th:src="${book.cover_i}" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title" th:text="${book.title}">Card title</h5>
+				<p class="card-text" th:text="${book.author_name}">authors</p>
+				<a th:href="@{'/book/'+${book.key}}" class="btn btn-primary">Get Details</a>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
