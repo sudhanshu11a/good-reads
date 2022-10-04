@@ -12,6 +12,8 @@
         <div sec:authorize="isAuthenticated()">
             <a href="/user/books">
                 Welcome <span sec:authentication="name"></span>
+                <div sec:authentication="name"></div>
+                <div sec:authentication="principal.authorities"></div>
             </a>
         </div>
 

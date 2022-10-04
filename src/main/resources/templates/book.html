@@ -29,7 +29,6 @@
 						Published Date: <small class="text-muted"
 							th:text="${book.publishedDate}">Published date</small>
 					</p>
-
 					<form th:if="${loginId}" action="#" th:attr="action=@{/user/book}" method="POST">
 						<input type="hidden" th:name="${_csrf.parameterName}"
 							th:value="${_csrf.token}" /> <input type="hidden" name="bookId"
